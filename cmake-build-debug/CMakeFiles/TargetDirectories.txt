@@ -1,6 +1,6 @@
-C:/Users/BigEp/CLionProjects/opengl12/cmake-build-debug/CMakeFiles/opengl12.dir
-C:/Users/BigEp/CLionProjects/opengl12/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/Users/BigEp/CLionProjects/opengl12/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-C:/Users/BigEp/CLionProjects/opengl12/cmake-build-debug/glad/CMakeFiles/glad.dir
-C:/Users/BigEp/CLionProjects/opengl12/cmake-build-debug/glad/CMakeFiles/edit_cache.dir
-C:/Users/BigEp/CLionProjects/opengl12/cmake-build-debug/glad/CMakeFiles/rebuild_cache.dir
+C:/Users/BigEp/CLionProjects/newGL/cmake-build-debug/CMakeFiles/opengl12.dir
+C:/Users/BigEp/CLionProjects/newGL/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/BigEp/CLionProjects/newGL/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+C:/Users/BigEp/CLionProjects/newGL/cmake-build-debug/glad/CMakeFiles/glad.dir
+C:/Users/BigEp/CLionProjects/newGL/cmake-build-debug/glad/CMakeFiles/edit_cache.dir
+C:/Users/BigEp/CLionProjects/newGL/cmake-build-debug/glad/CMakeFiles/rebuild_cache.dir

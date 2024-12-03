@@ -2,6 +2,7 @@ cmake_minimum_required(VERSION 3.29)
 project(opengl12)
 find_package(glfw3 CONFIG REQUIRED)
 find_package(glm CONFIG REQUIRED)
+find_package(assimp CONFIG REQUIRED)
 add_subdirectory(glad/)
 
 
@@ -12,3 +13,4 @@ add_executable(opengl12 main.cpp)
 target_link_libraries(opengl12 PRIVATE glfw)
 target_link_libraries(opengl12 PRIVATE glm::glm)
 target_link_libraries(opengl12 PRIVATE glad)
+target_link_libraries(opengl12 PRIVATE assimp::assimp)

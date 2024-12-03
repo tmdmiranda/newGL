@@ -1,0 +1,1 @@
+ "C:/Users/BigEp/DEVTOOLS/vcpkg/installed/x64-windows/debug/lib/glfw3dll.lib" "C:/Users/BigEp/DEVTOOLS/vcpkg/installed/x64-windows/debug/lib/glm.lib" glad/libglad.a "C:/Users/BigEp/DEVTOOLS/vcpkg/installed/x64-windows/debug/lib/assimp-vc143-mtd.lib" -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32 
