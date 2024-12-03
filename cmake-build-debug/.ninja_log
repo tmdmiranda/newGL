@@ -1,0 +1,5 @@
+# ninja log v6
+2	1028	7549393636395891	glad/CMakeFiles/glad.dir/src/glad.c.obj	a31fa3641c034c1f
+10	333	7549393781164317	glad/libglad.a	a8c3a01b0affcdfa
+5	506	7549393781124296	CMakeFiles/opengl12.dir/main.cpp.obj	bd7932a3d296a28b
+507	1799	7549393786144380	opengl12.exe	be32bbc83ed88da1
