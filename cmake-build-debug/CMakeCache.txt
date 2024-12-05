@@ -236,8 +236,8 @@ CMAKE_STRIP:FILEPATH=C:/Program Files/JetBrains/CLion 2024.2.2/bin/mingw/bin/str
 //Path to a program.
 CMAKE_TAPI:FILEPATH=CMAKE_TAPI-NOTFOUND
 
-//No help, variable specified on the command line.
-CMAKE_TOOLCHAIN_FILE:UNINITIALIZED=C:\Users\BigEp\.vcpkg-clion\vcpkg1\scripts\buildsystems\vcpkg.cmake
+//The CMake toolchain file
+CMAKE_TOOLCHAIN_FILE:FILEPATH=C:/Users/BigEp/.vcpkg-clion/vcpkg1/scripts/buildsystems/vcpkg.cmake
 
 //If this value is on, makefiles will be generated without the
 // .SILENT directive, and all commands will be echoed to the console
@@ -253,9 +253,6 @@ Glad_IS_TOP_LEVEL:STATIC=OFF
 
 //Value Computed by CMake
 Glad_SOURCE_DIR:STATIC=C:/Users/BigEp/CLionProjects/opengl12/glad
-
-//No help, variable specified on the command line.
-PYTHON_EXECUTABLE:UNINITIALIZED=C:\Users\BigEp\.vcpkg-clion\vcpkg1\downloads\tools\python\python-3.12.7-x64\python.exe
 
 //Automatically copy dependencies into the output directory for
 // executables.
@@ -309,14 +306,8 @@ Z_VCPKG_PWSH_PATH:FILEPATH=Z_VCPKG_PWSH_PATH-NOTFOUND
 // triplet
 _VCPKG_INSTALLED_DIR:PATH=C:/Users/BigEp/.vcpkg-clion/vcpkg1/installed
 
-//The directory containing a CMake configuration file for glad.
-glad_DIR:PATH=glad_DIR-NOTFOUND
-
 //The directory containing a CMake configuration file for glfw3.
 glfw3_DIR:PATH=C:/Users/BigEp/.vcpkg-clion/vcpkg1/installed/x64-windows/share/glfw3
-
-//The directory containing a CMake configuration file for glfw.
-glfw_DIR:PATH=glfw_DIR-NOTFOUND
 
 //The directory containing a CMake configuration file for glm.
 glm_DIR:PATH=C:/Users/BigEp/.vcpkg-clion/vcpkg1/installed/x64-windows/share/glm
