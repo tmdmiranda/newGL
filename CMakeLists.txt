@@ -13,9 +13,6 @@ add_executable(opengl12 main.cpp)
 
 target_link_libraries(opengl12 PRIVATE glfw)
 target_link_libraries(opengl12 PRIVATE glm::glm)
-<<<<<<< HEAD
-target_link_libraries(opengl12 PRIVATE glad)
-=======
 target_link_libraries(opengl12 PRIVATE glad)
 target_link_libraries(opengl12 PRIVATE assimp::assimp)
->>>>>>> 3d097e7a467feaa82fb4df9a021221e4eab04df1
+
