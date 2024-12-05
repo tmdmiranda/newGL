@@ -1,5 +1,6 @@
 cmake_minimum_required(VERSION 3.29)
 project(opengl12)
+file( COPY ${CMAKE_CURRENT_SOURCE_DIR}/resources DESTINATION ${CMAKE_CURRENT_BINARY_DIR} )
 find_package(glfw3 CONFIG REQUIRED)
 find_package(glm CONFIG REQUIRED)
 add_subdirectory(glad/)
