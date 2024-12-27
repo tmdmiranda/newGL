@@ -1,8 +1,6 @@
 # Ignore build directories
-/build/
-/Build/
-/out/
-/Out/
+[Bb]uild/
+[Oo]ut/
 
 # Ignore CMake-generated files
 CMakeFiles/
