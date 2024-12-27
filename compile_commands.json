@@ -1,0 +1,8 @@
+[
+{
+  "directory": "/home/tmdmiranda/git/newGL",
+  "command": "/usr/bin/c++  -I/home/tmdmiranda/git/newGL/glad/include -std=gnu++20 -o CMakeFiles/opengl12.dir/main.cpp.o -c /home/tmdmiranda/git/newGL/main.cpp",
+  "file": "/home/tmdmiranda/git/newGL/main.cpp",
+  "output": "CMakeFiles/opengl12.dir/main.cpp.o"
+}
+]
