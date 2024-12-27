@@ -1,6 +1,0 @@
-/home/tmdmiranda/git/newGL/Build/CMakeFiles/opengl12.dir
-/home/tmdmiranda/git/newGL/Build/CMakeFiles/edit_cache.dir
-/home/tmdmiranda/git/newGL/Build/CMakeFiles/rebuild_cache.dir
-/home/tmdmiranda/git/newGL/Build/glad/CMakeFiles/glad.dir
-/home/tmdmiranda/git/newGL/Build/glad/CMakeFiles/edit_cache.dir
-/home/tmdmiranda/git/newGL/Build/glad/CMakeFiles/rebuild_cache.dir
