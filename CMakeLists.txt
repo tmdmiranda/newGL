@@ -13,3 +13,11 @@ add_executable(opengl12 main.cpp)
 target_link_libraries(opengl12 PRIVATE glfw)
 target_link_libraries(opengl12 PRIVATE glm::glm)
 target_link_libraries(opengl12 PRIVATE glad)
+
+# Copy resources folder to the output folder (Debug or Release)
+add_custom_command(
+    TARGET opengl12 POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_directory
+        ${CMAKE_CURRENT_SOURCE_DIR}/resources
+        $<TARGET_FILE_DIR:opengl12>/resources
+)
