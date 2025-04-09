@@ -14,7 +14,7 @@ find_package(glm CONFIG REQUIRED)
 
 # Add glad subdirectory
 add_subdirectory(glad/)
-
+add_subdirectory(extern/glew)  # GLEW's CMake build system
 # Set C++ standard
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 set(CMAKE_CXX_STANDARD 20)
@@ -25,7 +25,15 @@ add_executable(opengl12 main.cpp)
 # Link libraries to the executable
 target_link_libraries(opengl12 PRIVATE glfw)
 target_link_libraries(opengl12 PRIVATE glm::glm)
+target_link_libraries(opengl12 PRIVATE libglew_static)
+
 target_link_libraries(opengl12 PRIVATE glad)
+# --- Include GLEW headers ---
+target_include_directories(opengl12 PRIVATE
+    extern/glew/include  # GLEW headers
+)
+
+
 
 if(WIN32)
     # Use custom command to copy resources folder on Windows

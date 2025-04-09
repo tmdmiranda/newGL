@@ -1,10 +1,12 @@
-#include <glad/glad.h>
+//#include <glad/glad.h>
+#include<GL/glew.h>
 #include <GLFW/glfw3.h>
 #include <iostream>
 #include<string>
 #include<fstream>
 #include<sstream>
 #include<cerrno>
+
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void processInput(GLFWwindow *window);
@@ -41,11 +43,13 @@ int main()
 
     // glad: load all OpenGL function pointers
     // ---------------------------------------
-    if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
+    glewExperimental = true;
+    if (glewInit() != GLEW_OK)
     {
-        std::cout << "Failed to initialize GLAD" << std::endl;
-        return -1;
+      std::cerr << "Failed to initialize GLEW" << std::endl;
+      return -1;
     }
+
     std::string vertexCode = get_file_contents("resources/default.vert");
     std::string fragmentCode = get_file_contents("resources/default.frag");
 

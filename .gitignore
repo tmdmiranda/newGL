@@ -22,7 +22,7 @@ Makefile
 *.vcxproj.*
 *.idea/
 *.vscode/
-
+*.cache/
 # Ignore log and temporary files
 *.log
 *.tmp

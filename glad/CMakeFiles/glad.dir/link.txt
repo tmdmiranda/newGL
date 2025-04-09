@@ -1,2 +1,1 @@
-/usr/bin/ar qc libglad.a CMakeFiles/glad.dir/src/glad.c.o
-/usr/bin/ranlib libglad.a
+/usr/sbin/cc -fPIC -Wl,--dependency-file=CMakeFiles/glad.dir/link.d -shared -Wl,-soname,libglad.so -o libglad.so CMakeFiles/glad.dir/src/glad.c.o

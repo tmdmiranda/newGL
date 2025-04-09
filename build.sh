@@ -14,7 +14,7 @@ for pkg in "${REQUIRED_PKGS[@]}"; do
     fi
 done
 
-[ -d ./build ] && cd build || mkdir build && cd build 
+[ -d ./build ] && { cd build; } || { mkdir build && cd build; }
 cmake ..
 make
 ./opengl12
