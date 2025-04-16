@@ -91,8 +91,8 @@ void print_error(int error, const char *description)
 void init(void)
 {
  ShaderInfo shaders[] = {
-   {GL_VERTEX_SHADER, "triangles.vert"},
-   {GL_FRAGMENT_SHADER, "triangles.frag"},
+   {GL_VERTEX_SHADER, "resources/triangles.vert"},
+   {GL_FRAGMENT_SHADER, "resources/triangles.frag"},
    {GL_NONE, NULL}
  };
 

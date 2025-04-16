@@ -1,8 +1,14 @@
 [
 {
-  "directory": "/home/tiago/newGL/build",
-  "command": "/usr/sbin/c++ -DGLEW_NO_GLU -DGLEW_STATIC -I/home/tiago/newGL/extern/glew/include -I/home/tiago/newGL/glad/include -std=gnu++20 -o CMakeFiles/opengl12.dir/main.cpp.o -c /home/tiago/newGL/main.cpp",
-  "file": "/home/tiago/newGL/main.cpp",
+  "directory": "/home/tmdmiranda/newGL/build",
+  "command": "/usr/sbin/c++ -DGLEW_NO_GLU -DGLEW_STATIC -I/home/tmdmiranda/newGL/extern/glew/include -I/home/tmdmiranda/newGL/glad/include -std=gnu++20 -o CMakeFiles/opengl12.dir/main.cpp.o -c /home/tmdmiranda/newGL/main.cpp",
+  "file": "/home/tmdmiranda/newGL/main.cpp",
   "output": "CMakeFiles/opengl12.dir/main.cpp.o"
+},
+{
+  "directory": "/home/tmdmiranda/newGL/build",
+  "command": "/usr/sbin/c++ -DGLEW_NO_GLU -DGLEW_STATIC -I/home/tmdmiranda/newGL/extern/glew/include -I/home/tmdmiranda/newGL/glad/include -std=gnu++20 -o CMakeFiles/opengl12.dir/LoadShaders.cpp.o -c /home/tmdmiranda/newGL/LoadShaders.cpp",
+  "file": "/home/tmdmiranda/newGL/LoadShaders.cpp",
+  "output": "CMakeFiles/opengl12.dir/LoadShaders.cpp.o"
 }
 ]
