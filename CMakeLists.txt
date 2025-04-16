@@ -20,7 +20,7 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 set(CMAKE_CXX_STANDARD 20)
 
 # Add the executable target
-add_executable(opengl12 main.cpp)
+add_executable(opengl12 main.cpp LoadShaders.cpp)
 
 # Link libraries to the executable
 target_link_libraries(opengl12 PRIVATE glfw)
