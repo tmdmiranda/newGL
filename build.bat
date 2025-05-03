@@ -1,129 +1,180 @@
 @echo off
 setlocal enabledelayedexpansion
 
-:: Color variables
-set "RED=[91m"
-set "GREEN=[92m"
-set "YELLOW=[93m"
-set "BLUE=[94m"
-set "MAGENTA=[95m"
-set "CYAN=[96m"
-set "WHITE=[97m"
-set "RESET=[0m"
+:: Check if ANSI colors are supported
+if "%ANSICON%"=="" (
+    set "RED="
+    set "GREEN="
+    set "YELLOW="
+    set "BLUE="
+    set "MAGENTA="
+    set "CYAN="
+    set "WHITE="
+    set "RESET="
+) else (
+    set "RED=[91m"
+    set "GREEN=[92m"
+    set "YELLOW=[93m"
+    set "BLUE=[94m"
+    set "MAGENTA=[95m"
+    set "CYAN=[96m"
+    set "WHITE=[97m"
+    set "RESET=[0m"
+)
 
-:: Function to display header
-:header
+:: Main Menu
+:main
 cls
-echo %BLUE%=============================================%RESET%
-echo %YELLOW%      OpenGL Project Build System%RESET%
-echo %BLUE%=============================================%RESET%
+echo %BLUE%=================================%RESET%
+echo %YELLOW%    Project Build System%RESET%
+echo %BLUE%=================================%RESET%
 echo.
-
-:: Main menu
-:menu
-echo %WHITE%Please select an option:%RESET%
-echo %GREEN%[1]%RESET% Get Dependencies
-echo %GREEN%[2]%RESET% Build and Run
+echo %WHITE%Select an option:%RESET%
+echo %GREEN%[1]%RESET% Install Dependencies
+echo %GREEN%[2]%RESET% Build and Run Project
 echo %GREEN%[3]%RESET% Exit
 echo.
 
-set /p choice=%YELLOW%Enter your choice (1-3): %RESET%
+choice /c 123 /n /m "Enter your choice: "
+if errorlevel 3 exit /b
+if errorlevel 2 goto build_run
+if errorlevel 1 goto install_deps
 
-if "%choice%"=="1" goto get_dependencies
-if "%choice%"=="2" goto build_run
-if "%choice%"=="3" exit /b
-
-echo %RED%Invalid choice. Please try again.%RESET%
-echo.
-goto menu
-
-:get_dependencies
-echo %CYAN%Setting up dependencies...%RESET%
+:: Install Dependencies
+:install_deps
+cls
+echo %BLUE%======== INSTALL DEPENDENCIES ========%RESET%
 echo.
 
-:: Check if VCPKG_ROOT is already set
-if not defined VCPKG_ROOT (
-    echo %YELLOW%VCPKG not found. Downloading and installing vcpkg...%RESET%
+:: Check for git
+where git >nul 2>nul
+if %errorlevel% neq 0 (
+    echo %RED%Git is not installed or not in PATH%RESET%
+    echo %YELLOW%Please install Git from https://git-scm.com/%RESET%
+    pause
+    goto main
+)
+
+:: Check for CMake
+where cmake >nul 2>nul
+if %errorlevel% neq 0 (
+    echo %RED%CMake is not installed%RESET%
+    echo %YELLOW%Attempting to install CMake...%RESET%
     
-    :: Clone vcpkg
-    echo %WHITE%Cloning vcpkg repository...%RESET%
-    git clone https://github.com/Microsoft/vcpkg.git
-    if errorlevel 1 (
-        echo %RED%Failed to clone vcpkg repository%RESET%
+    powershell -Command "Start-Process -Verb RunAs -Wait -FilePath 'msiexec' -ArgumentList '/i','https://github.com/Kitware/CMake/releases/download/v3.27.4/cmake-3.27.4-windows-x86_64.msi','/quiet','/qn','/norestart','ADD_CMAKE_TO_PATH=System'"
+    if %errorlevel% neq 0 (
+        echo %RED%Failed to install CMake automatically%RESET%
+        echo %YELLOW%Please install CMake manually from https://cmake.org/download/%RESET%
         pause
-        goto menu
+        goto main
     )
     
-    :: Bootstrap vcpkg
-    echo %WHITE%Bootstrapping vcpkg...%RESET%
+    echo %GREEN%CMake installed successfully!%RESET%
+    set "PATH=%PATH%;C:\Program Files\CMake\bin"
+)
+
+:: Install Vcpkg if needed
+if not defined VCPKG_ROOT (
+    echo %YELLOW%Installing vcpkg...%RESET%
+    
+    if not exist "vcpkg" (
+        git clone https://github.com/Microsoft/vcpkg.git
+        if %errorlevel% neq 0 (
+            echo %RED%Failed to clone vcpkg repository%RESET%
+            pause
+            goto main
+        )
+    )
+    
     cd vcpkg
     .\bootstrap-vcpkg.bat
-    if errorlevel 1 (
+    if %errorlevel% neq 0 (
         echo %RED%Failed to bootstrap vcpkg%RESET%
+        cd ..
         pause
-        goto menu
+        goto main
     )
     cd ..
     
-    :: Set VCPKG_ROOT locally for this session
     set "VCPKG_ROOT=%cd%\vcpkg"
-    echo %GREEN%VCPKG_ROOT set to: !VCPKG_ROOT!%RESET%
-    
-    :: Add to local environment (this session only)
-    setx VCPKG_ROOT "!VCPKG_ROOT!" > nul
+    setx VCPKG_ROOT "%VCPKG_ROOT%" >nul
+    echo %GREEN%Vcpkg installed at: %VCPKG_ROOT%%RESET%
 ) else (
-    echo %GREEN%VCPKG already installed at: %VCPKG_ROOT%%RESET%
+    echo %GREEN%Using existing vcpkg at: %VCPKG_ROOT%%RESET%
 )
 
-echo %WHITE%Getting git submodules...%RESET%
-git submodule init
-git submodule update
-if errorlevel 1 (
+:: Install dependencies from vcpkg.json
+if exist vcpkg.json (
+    echo %YELLOW%Installing packages from vcpkg.json...%RESET%
+    "%VCPKG_ROOT%\vcpkg" install --triplet x64-windows
+    if %errorlevel% neq 0 (
+        echo %RED%Failed to install vcpkg dependencies%RESET%
+        pause
+        goto main
+    )
+) else (
+    echo %YELLOW%No vcpkg.json found - skipping package installation%RESET%
+)
+
+:: Update git submodules
+echo %YELLOW%Updating git submodules...%RESET%
+git submodule update --init --recursive
+if %errorlevel% neq 0 (
     echo %RED%Failed to update submodules%RESET%
     pause
-    goto menu
+    goto main
 )
 
-echo %GREEN%Dependencies setup complete!%RESET%
+echo %GREEN%All dependencies installed successfully!%RESET%
 pause
-goto menu
+goto main
 
+:: Build and Run Project
 :build_run
-echo %CYAN%Building and running project...%RESET%
+cls
+echo %BLUE%======== BUILD AND RUN PROJECT ========%RESET%
 echo.
 
-:: Check if VCPKG_ROOT is set
+:: Verify VCPKG_ROOT is set
 if not defined VCPKG_ROOT (
-    echo %RED%VCPKG_ROOT is not set. Please run 'Get Dependencies' first.%RESET%
+    echo %RED%VCPKG_ROOT is not set! Run 'Install Dependencies' first.%RESET%
     pause
-    goto menu
+    goto main
 )
 
-echo %YELLOW%Creating build directory...%RESET%
+:: Create build directory
 if not exist build mkdir build
 cd build
 
+:: Run CMake
 echo %YELLOW%Running CMake...%RESET%
-cmake -DCMAKE_TOOLCHAIN_FILE=%VCPKG_ROOT%\scripts\buildsystems\vcpkg.cmake ..
-if errorlevel 1 (
+cmake -DCMAKE_TOOLCHAIN_FILE="%VCPKG_ROOT%/scripts/buildsystems/vcpkg.cmake" ..
+if %errorlevel% neq 0 (
     echo %RED%CMake configuration failed%RESET%
+    cd ..
     pause
-    goto menu
+    goto main
 )
 
+:: Build project
 echo %YELLOW%Building project...%RESET%
 cmake --build . --config Debug
-if errorlevel 1 (
+if %errorlevel% neq 0 (
     echo %RED%Build failed%RESET%
+    cd ..
     pause
-    goto menu
+    goto main
 )
 
+:: Run executable
 echo %YELLOW%Running application...%RESET%
-cd Debug
-start ./opengl12.exe
-cd ..\..
+if exist Debug\opengl12.exe (
+    start Debug\opengl12.exe
+) else (
+    echo %RED%Executable not found: opengl12.exe%RESET%
+)
 
-echo %GREEN%Build and run completed successfully!%RESET%
+cd ..
+echo %GREEN%Build and run completed!%RESET%
 pause
-goto menu
+goto main
