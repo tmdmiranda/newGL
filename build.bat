@@ -2,16 +2,6 @@
 setlocal enabledelayedexpansion
 
 :: Check if ANSI colors are supported
-if "%ANSICON%"=="" (
-    set "RED="
-    set "GREEN="
-    set "YELLOW="
-    set "BLUE="
-    set "MAGENTA="
-    set "CYAN="
-    set "WHITE="
-    set "RESET="
-) else (
     set "RED=[91m"
     set "GREEN=[92m"
     set "YELLOW=[93m"
@@ -20,7 +10,7 @@ if "%ANSICON%"=="" (
     set "CYAN=[96m"
     set "WHITE=[97m"
     set "RESET=[0m"
-)
+
 
 :: Main Menu
 :main
